@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 import rightArrow from '../assets/icons/arrow-right.svg';
 
-const Home = () => {
+const Palestras = () => {
   return (
     <div>
       <Head>
@@ -31,7 +31,7 @@ const Home = () => {
               <h3 className="text-xl font-bold text-center mb-0">
                 Documentação da API
               </h3>
-              <h1 className="text-2xl font-bold text-center mb-2">
+              <h1 className="text-4xl font-bold text-center mb-2">
                 Inteli Blockchain
               </h1>
               <p className="text-md text-center">
@@ -129,4 +129,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Palestras;

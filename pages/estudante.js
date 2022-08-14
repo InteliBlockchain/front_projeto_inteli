@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 import rightArrow from '../assets/icons/arrow-right.svg';
 
-const Home = () => {
+const Estudante = () => {
   return (
     <div>
       <Head>
@@ -129,4 +129,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Estudante;
