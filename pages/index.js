@@ -24,7 +24,7 @@ const Home = () => {
 					md:w-1/2
 					lg:w-3/5
 					xl:w-1/2 xl:gap-3
-          mx-auto grid gap-x-4 my-auto h-full items-center justify-evenly"
+          mx-auto grid gap-x-4 my-auto h-full items-center justify-around"
         >
           <div className="grid-cols-11 md:grid-cols-8  justify-center items-center">
             <div className="mx-auto">
@@ -42,7 +42,7 @@ const Home = () => {
           </div>
 
           <div className="grid-cols-11 md:grid-cols-8  justify-around">
-            <Link href="/estudante">
+            <Link href="/docs/student">
               <motion.div
                 className="text-md md:text-xl p-4 bg-gray-200 rounded-lg shadow-lg text-red-500 cursor-pointer"
                 whileHover={{
@@ -62,7 +62,7 @@ const Home = () => {
               </motion.div>
             </Link>
 
-            <Link href="/campus">
+            <Link href="/docs/campus">
               <motion.div
                 className="text-md md:text-xl p-4 bg-gray-200 rounded-lg shadow-lg text-red-500 my-4 cursor-pointer"
                 whileHover={{
@@ -82,7 +82,7 @@ const Home = () => {
               </motion.div>
             </Link>
 
-            <Link href="/palestras">
+            <Link href="/docs/lectures">
               <motion.div
                 className="text-md md:text-xl p-4 bg-gray-200 rounded-lg shadow-lg text-red-500 cursor-pointer"
                 whileHover={{
@@ -104,7 +104,7 @@ const Home = () => {
           </div>
 
           <div className="flex items-center justify-center">
-            <Link href="/estudante">
+            <Link href="/docs">
               <motion.button
                 className="bg-black text-white font-bold py-2 px-4 rounded-md mx-auto flex justify-between shadow-md"
                 whileHover={{

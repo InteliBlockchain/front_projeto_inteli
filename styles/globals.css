@@ -9,6 +9,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-.code-font {
+code {
   font-family: 'Fira Code', monospace;
+  color: crimson;
 }
