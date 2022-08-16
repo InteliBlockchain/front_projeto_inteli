@@ -13,3 +13,26 @@ code, pre {
   font-family: 'Fira Code', monospace;
   color: #272822;
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: #f0f0f0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 100vh;
+  border: 3px solid #f0f0f0;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background:rgba(255,255,255,0.7);
+}

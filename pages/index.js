@@ -41,24 +41,24 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="grid-cols-11 md:grid-cols-8  justify-around">
+          <div className="grid-cols-11 md:grid-cols-8 my-4 justify-around">
             <Link href="/docs/student">
               <motion.div
-                className="text-md md:text-xl p-4 bg-gray-200 rounded-lg shadow-lg text-red-500 cursor-pointer"
+                className="text-md md:text-xl p-4 bg-gray-200 rounded-lg shadow-lg text-red-500 my-4 cursor-pointer"
                 whileHover={{
                   scale: 1.02,
                   y: -2.5,
                   transition: { duration: 0.2 },
                 }}
               >
-                <span className="mx-auto">Estudante</span>
-                <p className="text-sm ml-4">
-                  Métodos referenciados aos estudantes:
-                  <br />- Criação de carteira;
-                  <br />- Ver o endereço da carteira;
-                  <br />- Ver RA do estudante;
-                  <br />- Remover estudante
-                </p>
+                <pre>
+                  <code lang="javascript" className="text-base">
+                    <span className="mx-auto text-xl font-bold">Estudante</span>
+                    {`\n`}- Criação de carteira;{`\n`}- Ver o endereço da
+                    carteira;{`\n`}- Ver o RA do estudante;{`\n`}- Remover o
+                    estudante
+                  </code>
+                </pre>
               </motion.div>
             </Link>
 
@@ -71,14 +71,19 @@ const Home = () => {
                   transition: { duration: 0.2 },
                 }}
               >
-                <span className="mx-auto">Acesso ao campus</span>
-                <p className="text-sm ml-4">
-                  Métodos referenciados aos estudantes:
-                  <br />- Criação de carteira;
-                  <br />- Ver o endereço da carteira;
-                  <br />- Ver RA do estudante;
-                  <br />- Remover estudante
-                </p>
+                <pre>
+                  <code lang="javascript" className="text-base">
+                    <span className="mx-auto text-xl font-bold">
+                      Acesso ao Campus
+                    </span>
+                    {`\n`}- Registro de entrada no campus;{`\n`}- Registro de
+                    saída do campus;{`\n`}- Ver entradas de um estudante no
+                    campus em determinado dia;{`\n`}- Ver saídas de um estudante
+                    no campus em determinado dia;{`\n`}- Ver todos os estudantes
+                    que entraram no campus em determinado dia;{`\n`}- Ver todos
+                    os estudantes que saíram do campus em determinado dia.
+                  </code>
+                </pre>
               </motion.div>
             </Link>
 
@@ -91,14 +96,15 @@ const Home = () => {
                   transition: { duration: 0.2 },
                 }}
               >
-                <span className="mx-auto">Palestras</span>
-                <p className="text-sm ml-4">
-                  Métodos referenciados aos estudantes:
-                  <br />- Criação de carteira;
-                  <br />- Ver o endereço da carteira;
-                  <br />- Ver RA do estudante;
-                  <br />- Remover estudante
-                </p>
+                <pre>
+                  <code lang="javascript" className="text-base">
+                    <span className="mx-auto text-xl font-bold">Palestras</span>
+                    {`\n`}- Criar registro de palestra e alunos que
+                    participaram;{`\n`}- Ver todas as palestras que um estudante
+                    participou;{`\n`}- Ver todas as palestras que aconteceram no
+                    Inteli.
+                  </code>
+                </pre>
               </motion.div>
             </Link>
           </div>

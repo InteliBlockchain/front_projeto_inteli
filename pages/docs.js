@@ -1,40 +1,14 @@
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
-import useSWR from 'swr';
 
-import data from '../assets/data.json';
 import content from '../assets/content.json';
 
 import { Card } from '../components/Cards';
 import rightArrow from '../assets/icons/arrow-right.svg';
 
 const Docs = () => {
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
   const { info, item } = content;
-
-  // if (error) return <div>failed to load</div>;
-  // if (!data) return <div>loading...</div>;
-
-  console.log(content);
-
-  const requisition = {
-    method: 'POST',
-    routeFunction: 'Criar Wallet para o estudante',
-    desc: 'Rota que recebe o RA do aluno e executa a função "createStudent" do contrato "InteliFactory"',
-    url: '{{url}}/student/create',
-    headers: [
-      {
-        name: 'Authorization',
-        value: 'Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f',
-      },
-    ],
-    body: {
-      ra: '2022.2A.02',
-    },
-  };
 
   return (
     <div>
@@ -76,10 +50,33 @@ const Docs = () => {
 
             <hr className="my-4" />
 
-            {data.map((item) => (
-              <Card {...item} key={item.body.ra} />
+            {item[0].item.map((item) => (
+              <Card {...item} />
             ))}
-            {/* doc card */}
+
+            <hr className="my-8" />
+
+            <div className="mx-auto">
+              <h1 className="text-3xl font-bold">Acesso ao Campus</h1>
+            </div>
+
+            <hr className="my-4" />
+
+            {item[1].item.map((item) => (
+              <Card {...item} />
+            ))}
+
+            <hr className="my-8" />
+
+            <div className="mx-auto">
+              <h1 className="text-4xl font-bold">Acesso ao Campus</h1>
+            </div>
+
+            <hr className="my-4" />
+
+            {item[2].item.map((item) => (
+              <Card {...item} />
+            ))}
           </div>
         </motion.div>
       </main>
