@@ -2,56 +2,23 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
 
-export const Card = ({ name, request }) => {
-  const { method, header, url, description, body } = request;
+import { getLectures } from '../assets/functions';
 
+const Button = ({ isLoading, children, className, ...props }) => {
+  isLoading ? (className += 'cursor-loading') : null;
+  return (
+    <button className={className} {...props} disabled={isLoading}>
+      {isLoading ? 'Loading...' : children}
+    </button>
+  );
+};
+
+export const Card = ({ name, request, createWallet }) => {
+  const [result, setResult] = useState();
+  const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  const useReq = (input) => {
-    url = url.raw.replace('{{url}}', '').split('/').splice(1).join('/');
-    let fetcher;
-
-    switch (method) {
-      case 'GET':
-        fetcher = (url, token) =>
-          axios
-            .get(url, { headers: { Authorization: token } })
-            .then((res) => res.data);
-        break;
-      case 'POST':
-        fetcher = (url, token, body) =>
-          axios
-            .post(url, body, { headers: { Authorization: token } })
-            .then((res) => res.data);
-        break;
-      case 'PUT':
-        fetcher = (url, token, body) =>
-          axios
-            .put(url, body, { headers: { Authorization: token } })
-            .then((res) => res.data);
-        break;
-      case 'DELETE':
-        fetcher = (url, token) =>
-          axios
-            .delete(url, { headers: { Authorization: token } })
-            .then((res) => res.data);
-        break;
-      default:
-        break;
-    }
-
-    const { data, error } = useSWR('http://localhost:3001/' + url, fetcher, {
-      initialData: {},
-      onError: (err) => {
-        console.log(err);
-      },
-    });
-  };
-
-  console.log(
-    'http://localhost:3001/' +
-      url.raw.replace('{{url}}', '').split('/').splice(1).join('/')
-  );
+  const { method, header, url, description, body } = request;
 
   return (
     <div className="grid-cols-11 md:grid-cols-8 justify-center items-center mb-16 shadow-md p-4 rounded-lg">
@@ -104,25 +71,51 @@ export const Card = ({ name, request }) => {
       )}
 
       <div>
-        {body && body.raw ? (
+        {body ? (
           <>
             <h4 className="text-md mt-4">
-              {typeof body === 'object' ? (
+              {body ? (
                 <span className="font-bold text-xl">
-                  BODY{' '}
-                  <span className="font-normal text-sm">
-                    {body.mode ? body.mode : ''}
-                  </span>
+                  BODY <span className="font-normal text-sm">{body.mode}</span>
                 </span>
               ) : (
                 'BODY'
               )}
             </h4>
+
             <hr className="mt-2 mb-4" />
-            <div className="p-2 bg-gray-200 rounded-sm shadow-lg">
-              <pre>
-                <code lang="javascript">{body.raw}</code>
-              </pre>
+
+            <table
+              className={`${
+                body.formdata ? 'table-auto' : 'hidden'
+              } rounded-xl w-full border-orange-500`}
+            >
+              <thead>
+                <tr>
+                  <th className="text-start">Key</th>
+                  <th className="text-start">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {body.formdata ? (
+                  body.formdata.map((item, index) => (
+                    <tr className="justify-evenly" key={index}>
+                      <td className="w-1/3">{item.key}</td>
+                      <td className="w-2/3">{item.value || item.src}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <></>
+                )}
+              </tbody>
+            </table>
+
+            <div
+              className={`p-2 bg-gray-200 rounded-sm shadow-lg ${
+                body.raw ? '' : 'hidden'
+              }`}
+            >
+              {body.raw}
             </div>
           </>
         ) : (
@@ -148,29 +141,63 @@ export const Card = ({ name, request }) => {
                   ? 'rounded-l-lg border p-2 w-3/4'
                   : 'rounded-l-lg border p-2 w-3/4'
               }
-              placeholder={`Valor no formato do body...`}
+              placeholder={`Valor no formato do body/o que vier após o ":"...`}
+              onChange={(e) => setInputValue(e.target.value)}
+              value={inputValue}
+            />
+          ) : url.raw.includes('/:') ? (
+            <input
+              type="text"
+              className="rounded-l-lg border p-2 w-3/4"
+              placeholder={`Valor no formato do body ou o que vier após o ":"..`}
               onChange={(e) => setInputValue(e.target.value)}
               value={inputValue}
             />
           ) : (
             <></>
           )}
-          <button
+
+          <Button
             className={
               method == 'POST'
                 ? 'bg-orange-400 w-1/4 p-2 h-full text-white rounded-r-lg'
+                : method == 'POST' && body.formdata
+                ? 'bg-orange-400 w-full p-4 h-full text-white rounded-r-lg'
+                : method == 'GET' && url.raw.includes('/:')
+                ? 'bg-green-500 w-1/4 p-2 h-full text-white rounded-r-lg'
                 : method == 'GET'
                 ? 'bg-green-500 p-2 h-full text-white rounded-lg w-full'
                 : method == 'PUT'
                 ? 'bg-blue-600 w-1/4 p-2 h-full text-white rounded-r-lg'
                 : 'bg-red-500 w-1/4 p-2 h-full text-white rounded-r-lg'
             }
-            onClick={() => {
-              useReq(inputValue);
+            onClick={async () => {
+              setIsButtonLoading(true);
+              setTimeout(() => {
+                setIsButtonLoading(false);
+              }, 2500);
+              setResult(
+                getLectures(body.raw, '2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f', result)
+              );
             }}
+            isLoading={isButtonLoading}
           >
             Executar
-          </button>
+          </Button>
+
+          {result ? (
+            <div className="mt-4">
+              <h4 className="text-xl font-bold mt-4">Resultado</h4>
+
+              <hr className="mt-2 mb-4" />
+
+              <div className="text-md my-4 flex text-gray-700 justify-between lg:w-2/3">
+                {JSON.stringify(result)}
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

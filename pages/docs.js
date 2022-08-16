@@ -2,13 +2,17 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Head from 'next/head';
 
+import { Card } from '../components/Cards';
 import content from '../assets/content.json';
 
-import { Card } from '../components/Cards';
-import rightArrow from '../assets/icons/arrow-right.svg';
+import { createWallet } from '../assets/functions.js';
 
 const Docs = () => {
   const { info, item } = content;
+
+  const studentDocs = item[0].item;
+  const campusDocs = item[1].item;
+  const lectureDocs = item[2].item;
 
   return (
     <div>
@@ -50,8 +54,8 @@ const Docs = () => {
 
             <hr className="my-4" />
 
-            {item[0].item.map((item) => (
-              <Card {...item} />
+            {studentDocs.map((item, index) => (
+              <Card {...item} key={index + 'student'} />
             ))}
 
             <hr className="my-8" />
@@ -62,20 +66,20 @@ const Docs = () => {
 
             <hr className="my-4" />
 
-            {item[1].item.map((item) => (
-              <Card {...item} />
+            {campusDocs.map((item, index) => (
+              <Card {...item} key={index + 'campus'} />
             ))}
 
             <hr className="my-8" />
 
             <div className="mx-auto">
-              <h1 className="text-4xl font-bold">Acesso ao Campus</h1>
+              <h1 className="text-4xl font-bold">Palestras</h1>
             </div>
 
             <hr className="my-4" />
 
-            {item[2].item.map((item) => (
-              <Card {...item} />
+            {lectureDocs.map((item, index) => (
+              <Card {...item} key={index + 'lecture'} />
             ))}
           </div>
         </motion.div>
