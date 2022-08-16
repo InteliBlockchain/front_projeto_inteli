@@ -51,14 +51,13 @@ const Home = () => {
                   transition: { duration: 0.2 },
                 }}
               >
-                <span className="mx-auto">Estudante</span>
-                <p className="text-sm ml-4">
-                  Métodos referenciados aos estudantes:
-                  <br />- Criação de carteira;
-                  <br />- Ver o endereço da carteira;
-                  <br />- Ver RA do estudante;
-                  <br />- Remover estudante
-                </p>
+                <pre>
+                <code style={{ color: 'crimson' }}>
+                  {`{
+    "ra": "2022.2A.02"
+}`}
+                </code>
+              </pre>
               </motion.div>
             </Link>
 
