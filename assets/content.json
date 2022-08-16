@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "fd8948d1-4db5-4fb9-b813-408ab332e8f4",
+		"name": "Inteli blockchain",
+		"description": "Projeto Blockchain para o Inteli que registra uma carteira para cada aluno e mantêm registro de suas atividades no Campus.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17956691"
+	},
+	"item": [
+		{
+			"name": "Estudante",
+			"item": [
+				{
+					"name": "Criar Wallet para Estudante",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ra\": \"2022.2A.01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"create"
+							]
+						},
+						"description": "Rota que recebe o RA do aluno e executa a função \"createStudent\" do contrato \"InteliFactory\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Ver endereço da Wallet de um estudante",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ra\": \"2022.2A.01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student/wallet",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"wallet"
+							]
+						},
+						"description": "Verificar endereço da carteira de um estudante a partir de seu RA.\n\n1- Executar função \"getWallet\" do contrato \"InteliFactory\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Ver RA de um estudante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"wallet\": \"00000000000000000000x\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student/ra",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"ra"
+							]
+						},
+						"description": "Verificar endereço da carteira de um estudante a partir de seu RA.\n\n1- Executar função \"getStudent\" do contrato \"InteliFactory\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Remover estudante",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/student/:ra",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								":ra"
+							],
+							"variable": [
+								{
+									"key": "ra",
+									"value": "2022.2A.01"
+								}
+							]
+						},
+						"description": "Remove um estudante do sistema.\n1- Executa a função \"eraseMe\" do contrato \"Person\".\n2- Executa a função removeStudent do contrato \"InteliFactory\""
+					},
+					"response": []
+				},
+				{
+					"name": "Balance do estudante",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ra\": \"2022.2A.01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student/balance",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transferir dinheiro do estudante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ra\": \"2022.2A.01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student/transferMoney",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"transferMoney"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Acesso ao Campus",
+			"item": [
+				{
+					"name": "Registrar entrada no Campus",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ra\": \"2022.2A.01\",\r\n    \"dateTime\": \"1995-12-17T03:40:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student/checkIn",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"checkIn"
+							]
+						},
+						"description": "Registra a entrada de um estudante no Campus. \nPassos:\n1- Executa a função \"getWallet\" do contrato \"InteliFactory\" para descobrir o endereço da carteira do estudante.\n2- Executa a função \"registerCheckIn\" do contrato de \"AccessCampus\".\n3- Executa a função \"registerCheckIn\" do contrato \"Person\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar saída do Campus",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ra\": \"2022.2A.35\",\r\n    \"dateTime\": \"2022-08-14T22:59:03.721Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student/checkOut",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"checkOut"
+							]
+						},
+						"description": "Registra a saída de um estudante do Campus.\nPassos:\n1- Executa a função \"getWallet\" do contrato \"InteliFactory\" para descobrir o endereço da carteira do estudante.\n2- Executa a função \"registerCheckOut\" do contrato de \"AccessCampus\".\n3- Executa a função \"registerCheckOut\" do contrato \"Person\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Ver entradas de um estudante específico no campus em um dia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ra\": \"2022.2A.01\",\r\n    \"date\": \"1995-12-17\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student/accesses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"accesses"
+							]
+						},
+						"description": "Rota que retorna todas as entradas de um estudante específico no campus.\n1- Executa a função \"getWallet\" do contrato \"InteliFactory\" para descobrir o endereço da carteira do estudante a partir de seu RA.\n2- Executa a função \"getCheckIn\" do contrato \"Person\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Ver saídas de um estudante específico no campus em um dia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ra\": \"2022.2A.01\",\r\n    \"date\": \"2022-08-14\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student/exits",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"exits"
+							]
+						},
+						"description": "Rota que retorna todas as saídas de um estudante específico no campus.\n1- Executa a função \"getWallet\" do contrato \"InteliFactory\" para descobrir o endereço da carteira do estudante a partir de seu RA.\n2- Executa a função \"getCheckOut\" do contrato \"Person\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Ver todos os estudantes que entraram no campus em um dia",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/student/allAccesses/:date",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"allAccesses",
+								":date"
+							],
+							"variable": [
+								{
+									"key": "date",
+									"value": "1995-12-17"
+								}
+							]
+						},
+						"description": "1- Executar a função \"getStudentEntries\" do contrato AccessCampus.\n2- Executar a função \"getStudent\" do contrato \"InteliFactory\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Ver todos os estudantes que saíram do campus em um dia",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/student/allExits/:date",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"allExits",
+								":date"
+							],
+							"variable": [
+								{
+									"key": "date",
+									"value": "2022-08-07"
+								}
+							]
+						},
+						"description": "1- Executar a função \"getStudentExits\" do contrato AccessCampus. 2- Executar a função \"getStudent\" do contrato \"InteliFactory\"."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Palestras",
+			"item": [
+				{
+					"name": "Criar registro de palestra e todos os alunos que participaram",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ras[]",
+									"value": "2022.2A.01",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/reish/Pictures/arrowDown.png"
+								},
+								{
+									"key": "name",
+									"value": "Palestra 2",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "2020-05-12T23:50:21.817Z",
+									"type": "text"
+								},
+								{
+									"key": "ras[]",
+									"value": "b",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "ras[]",
+									"value": "c",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/lecture/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"lecture",
+								"create"
+							],
+							"query": [
+								{
+									"key": "ras",
+									"value": "[\"2022-1A-01\",\n        \"2022-1A-02\",\n        \"2022-1A-03\"]",
+									"disabled": true
+								},
+								{
+									"key": "file",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "1- Executa a função \"viewWallet\" do contrato \"InteliFactory\" para descobrir o endereço da carteira de cada estudante a partir de seu RA.  \n2- Cria endereço ipfs com informações da palestra. (ver documentação da api de nft storage)  \n3- Executa a função \"createLecture\" do contrato \"LectureFactory\".  \n4- Executa a função \"newActivity\" do contrato Person passando o argumento \"_activityType\" como \"lecture\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Ver todas as palestras que um aluno participou",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/lecture/student/:ra",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"lecture",
+								"student",
+								":ra"
+							],
+							"variable": [
+								{
+									"key": "ra",
+									"value": "2022.2A.01"
+								}
+							]
+						},
+						"description": "1- Executa a função \"viewWallet\" do contrato \"InteliFactory\" para descobrir o endereço da carteira do estudante a partir de seu RA.  \n2- Executa a função \"getActivity\" do contrato Person."
+					},
+					"response": []
+				},
+				{
+					"name": "Ver todas as palestras que aconteceram no Inteli",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer 2-H7-A!u.nSz-)<Z/NQPV:gV$}Ny]f",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/lecture",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"lecture"
+							]
+						},
+						"description": "1- Executar função \"viewLectures\" do contrato \"LectureFactory\""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
