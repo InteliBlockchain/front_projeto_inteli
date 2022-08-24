@@ -16,8 +16,9 @@ import {
   getStudentExits,
   getEntries,
   getExits,
+  createLecture,
+  getStudentLectures,
   getLectures,
-  checkWallet,
 } from '../assets/functions';
 
 export const Card = ({ name, request }) => {
@@ -67,10 +68,10 @@ export const Card = ({ name, request }) => {
       requestFunction = getExits;
       break;
     case 'Criar registro de palestra e todos os alunos que participaram':
-      requestFunction = getLectures;
+      requestFunction = createLecture;
       break;
     case 'Ver todas as palestras que um aluno participou':
-      requestFunction = checkWallet;
+      requestFunction = getStudentLectures;
       break;
     case 'Ver todas as palestras que aconteceram no Inteli':
       requestFunction = getLectures;
@@ -187,8 +188,8 @@ export const Card = ({ name, request }) => {
 
         <hr className="mt-2 mb-4" />
 
-        <div className="mt-2">
-          {body && body.raw ? (
+        <div className="mt-2 flex justify-center">
+          {/* {body && body.raw ? (
             <input
               type="text"
               className={
@@ -214,21 +215,21 @@ export const Card = ({ name, request }) => {
             />
           ) : (
             <></>
-          )}
+          )} */}
 
           <Button
             className={
               method == 'POST'
-                ? 'bg-orange-400 w-1/4 p-2 h-full text-white rounded-r-lg'
+                ? 'bg-orange-400 w-full p-2 h-full text-white rounded-lg'
                 : body && body.formdata
                 ? 'bg-orange-400 w-full p-4 h-full text-white rounded-lg'
                 : method == 'GET' && url.raw.includes('/:')
-                ? 'bg-green-500 w-1/4 p-2 h-full text-white rounded-r-lg'
+                ? 'bg-green-500 w-full p-2 h-full text-white rounded-lg'
                 : method == 'GET'
-                ? 'bg-green-500 p-2 h-full text-white rounded-lg w-full'
+                ? 'bg-green-500 w-full p-2 h-full text-white rounded-lg mx-auto'
                 : method == 'PUT'
-                ? 'bg-blue-600 w-1/4 p-2 h-full text-white rounded-r-lg'
-                : 'bg-red-500 w-1/4 p-2 h-full text-white rounded-r-lg'
+                ? 'bg-blue-600 w-full p-2 h-full text-white rounded-lg'
+                : 'bg-red-500 w-full p-2 h-full text-white rounded-lg'
             }
             onClick={async () => {
               setIsButtonLoading(true);
@@ -247,21 +248,20 @@ export const Card = ({ name, request }) => {
           >
             Executar
           </Button>
-
-          {result ? (
-            <div className="mt-4">
-              <h4 className="text-xl font-bold mt-4">Resultado</h4>
-
-              <hr className="mt-2 mb-4" />
-
-              <div className="text-md my-4 flex text-gray-700 justify-between lg:w-2/3">
-                {JSON.stringify(result)}
-              </div>
-            </div>
-          ) : (
-            <></>
-          )}
         </div>
+        {result ? (
+          <div className="mt-4">
+            <h4 className="text-xl font-bold mt-4">Resultado</h4>
+
+            <hr className="mt-2 mb-4" />
+
+            <div className="text-md my-4 flex text-gray-700 max-w-full">
+              {JSON.stringify(result)}
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

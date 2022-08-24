@@ -6,6 +6,7 @@ import { Card } from '../components/Cards';
 import content from '../assets/content.json';
 
 import { createWallet } from '../assets/functions.js';
+import { useEffect } from 'react';
 
 const Docs = () => {
   const { info, item } = content;
@@ -55,7 +56,7 @@ const Docs = () => {
             <hr className="my-4" />
 
             {studentDocs.map((item, index) => (
-              <Card {...item} key={index + 'student'} />
+              <Card {...item} key={index+'student'} />
             ))}
 
             <hr className="my-8" />
@@ -67,7 +68,7 @@ const Docs = () => {
             <hr className="my-4" />
 
             {campusDocs.map((item, index) => (
-              <Card {...item} key={index + 'campus'} />
+              <Card {...item} key={index+'campus'} />
             ))}
 
             <hr className="my-8" />
@@ -79,7 +80,7 @@ const Docs = () => {
             <hr className="my-4" />
 
             {lectureDocs.map((item, index) => (
-              <Card {...item} key={index + 'lecture'} />
+              <Card {...item} key={index+'lecutre'} />
             ))}
           </div>
         </motion.div>

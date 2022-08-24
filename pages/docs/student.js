@@ -41,7 +41,7 @@ const Student = () => {
           <hr className="my-4" />
 
           {studentDocs.map((item, index) => (
-            <Card {...item} key={index + 'student'} />
+            <Card {...item} key={index + 'docs/student'} />
           ))}
         </div>
       </motion.div>

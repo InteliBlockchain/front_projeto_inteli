@@ -105,10 +105,10 @@ export const getRA = async (body, authToken, result) => {
 };
 
 export const removeStudent = async (body, authToken, result) => {
-  console.log(`Getting ${baseUrl}/student/remove/2022.2A.0001...`);
+  console.log(`Getting ${baseUrl}/student/2022.2A.0001...`);
 
   const res = await axios
-    .delete(`${baseUrl}/student/remove/2022.2A.0001`, {
+    .delete(`${baseUrl}/student/2022.2A.0001`, {
       headers: {
         Authorization: authToken,
       },
@@ -168,7 +168,40 @@ export const getStudentBalance = async (body, authToken, result) => {
   return data;
 };
 
-export const transferMoney = async (body, authToken, result) => {};
+export const transferMoney = async (body, authToken, result) => {
+  console.log(`Getting ${baseUrl}/student/transfer...`);
+
+  const res = await axios
+    .post(
+      `${baseUrl}/student/transferMoney`,
+      {
+        ra: '2022.2A.0001',
+      },
+      {
+        headers: {
+          Authorization: authToken,
+        },
+      }
+    )
+    .then((res) => {
+      console.log('Got it:\n');
+      result = res.data;
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.error('Error: ' + err);
+      return err;
+    })
+    .then((res) => {
+      console.log(res);
+      return res;
+    });
+
+  const { data } = res;
+
+  return data;
+};
 
 // Campus function
 export const registerEntry = async (body, authToken, result) => {};
@@ -184,15 +217,78 @@ export const getEntries = async (body, authToken, result) => {};
 export const getExits = async (body, authToken, result) => {};
 
 // Lecture functions
-export const createLecture = async (body, authToken, result) => {};
+export const createLecture = async (body, authToken, result) => {
+  console.log(`Getting ${baseUrl}/lecture/create...`);
 
-export const getStudentLectures = async (body, authToken, result) => {};
+  //send a form data with the lecture name and the teacher's ra
+  const res = await axios
+    .post(
+      `${baseUrl}/lecture/create`,
+      {
+        name: `Hello World ${Math.floor(Math.random() * (9999 - 1000) + 1000)}`,
+        description: `${Math.floor(Math.random() * (9999 - 1000) + 1000)}`,
+        ras: ['2022.2A.0001', '2022.2A.0002', '2022.2A.0003'],
+      },
+      {
+        headers: {
+          Authorization: authToken,
+        },
+      }
+    )
+    .then((res) => {
+      console.log('Got it:\n');
+      result = res.data;
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.error('Error: ' + err);
+      return err;
+    })
+    .then((res) => {
+      console.log(res);
+      return res;
+    });
 
-export const getLectures = async (body, authToken, result) => {
-  console.log(`Getting ${baseUrl}/lecture/get...`);
+  const { data } = res;
+
+  return data;
+};
+
+export const getStudentLectures = async (body, authToken, result) => {
+  console.log(`Getting ${baseUrl}/lecture/student/2022.2A.0001...`);
 
   const res = await axios
-    .get(`${baseUrl}/lecture`, {
+    .get(`${baseUrl}/lecture/student/2022.2A.0001`, {
+      headers: {
+        Authorization: authToken,
+      },
+    })
+    .then((res) => {
+      console.log('Got it:\n');
+      result = res.data;
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.error('Error: ' + err);
+      return err;
+    })
+    .then((res) => {
+      console.log(res);
+      return res;
+    });
+
+  const { data } = res;
+
+  return data;
+};
+
+export const getLectures = async (body, authToken, result) => {
+  console.log(`Getting ${baseUrl}/lecture...`);
+
+  const res = await axios
+    .post(`${baseUrl}/lecture`, {
       headers: {
         Authorization: authToken,
       },
