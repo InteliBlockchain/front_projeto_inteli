@@ -235,7 +235,7 @@ export const Card = ({ name, request }) => {
               setIsButtonLoading(true);
               setTimeout(() => {
                 setIsButtonLoading(false);
-              }, 2500);
+              }, 1250);
               setResult(
                 await requestFunction(
                   body ? body.raw : inputValue,

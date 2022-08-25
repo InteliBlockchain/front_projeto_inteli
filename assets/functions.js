@@ -3,12 +3,17 @@ const baseUrl = 'http://localhost:3001';
 
 // Student function
 export const createWallet = async (body, authToken, result) => {
-  console.log(`Getting ${baseUrl}/student/create...`);
+  let number1 = Math.floor(Math.random() * (9 - 1) + 1);
+  let number2 = Math.floor(Math.random() * (9 - 1) + 1);
+
+  console.log(
+    `Getting ${baseUrl}/student/create... | Creating user with ra: 2022.2A.00${number1}${number2}`
+  );
 
   const res = await axios
     .post(
       `${baseUrl}/student/create`,
-      { ra: `2022.2A.${Math.floor(Math.random() * (9999 - 1000) + 1000)}` },
+      { ra: `2022.2A.00${number1}${number2}` },
       {
         headers: {
           Authorization: authToken,
@@ -102,10 +107,10 @@ export const getRA = async (body, authToken, result) => {
 };
 
 export const removeStudent = async (body, authToken, result) => {
-  console.log(`Getting ${baseUrl}/student/2022.2A.0001...`);
+  console.log(`Getting ${baseUrl}/student/2022.2A.0074...`);
 
   const res = await axios
-    .delete(`${baseUrl}/student/2022.2A.0003`, {
+    .delete(`${baseUrl}/student/2022.2A.0074`, {
       headers: {
         Authorization: authToken,
       },
@@ -172,7 +177,7 @@ export const transferMoney = async (body, authToken, result) => {
     .post(
       `${baseUrl}/student/transferMoney`,
       {
-        ra: '2022.2A.0002',
+        ra: '2022.2A.0033',
       },
       {
         headers: {
@@ -209,7 +214,7 @@ export const registerEntry = async (body, authToken, result) => {
       `${baseUrl}/student/checkIn`,
       {
         ra: '2022.2A.0002',
-        dateTime: '1995-12-17T03:40:00',
+        dateTime: '1995-10-1805:40:00',
       },
       {
         headers: {
@@ -245,7 +250,7 @@ export const registerExit = async (body, authToken, result) => {
       `${baseUrl}/student/checkOut`,
       {
         ra: '2022.2A.0002',
-        dateTime: '1995-12-17T03:40:00',
+        dateTime: '1995-12-14T03:40:00',
       },
       {
         headers: {
@@ -281,7 +286,7 @@ export const getStudentEntries = async (body, authToken, result) => {
       `${baseUrl}/student/accesses`,
       {
         ra: '2022.2A.0002',
-        date: '1995-12-17',
+        date: '1995-12-18',
       },
       {
         headers: {
